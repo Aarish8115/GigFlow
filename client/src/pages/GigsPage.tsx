@@ -37,8 +37,8 @@ function GigsPage() {
   }
 
   return (
-    <div className="flex flex-col py-8 md:w-4/5 mx-auto w-full text-background">
-      <div className="flex justify-between items-center ">
+    <div className="flex flex-col py-8 md:w-4/5 mx-auto w-full px-4 text-background">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Open Gigs</h1>
           <p className="text-sm font-light  ">
@@ -48,7 +48,7 @@ function GigsPage() {
         {user && (
           <Link
             to="/gigs/new"
-            className="bg-tertiary text-primary h-fit font-normal text-base px-3 py-1.5 rounded-sm "
+            className="bg-tertiary text-primary h-fit font-normal text-base px-3 py-1.5 rounded-sm w-full text-center sm:w-auto"
           >
             Post a Gig
           </Link>
@@ -57,17 +57,17 @@ function GigsPage() {
 
       <form
         onSubmit={handleSearch}
-        className=" px-16 flex justify-center items-center gap-4 py-4 "
+        className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-center sm:px-16"
       >
         <input
           placeholder="Search gigs by title"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className=" text-background border-b-2 focus:border-b-0 rounded-br-none rounded-bl-none border-b-tertiary  focus:outline-tertiary rounded-sm px-4 py-2 w-3/5"
+          className=" text-background border-b-2 focus:border-b-0 rounded-br-none rounded-bl-none border-b-tertiary  focus:outline-tertiary rounded-sm px-4 py-2 w-full sm:w-3/5"
         />
         <button
           type="submit"
-          className="bg-tertiary  text-primary h-fit font-normal text-base px-3 py-1.5 rounded-sm "
+          className="bg-tertiary text-primary h-fit font-normal text-base px-3 py-1.5 rounded-sm w-full text-center sm:w-auto"
         >
           Search
         </button>
@@ -87,14 +87,14 @@ function GigsPage() {
             to={`/gigs/${gig._id}`}
             className="flex flex-col rounded-md px-6 py-4 gap-2 border-tertiary bg-secondary text-primary  "
           >
-            <div className="flex justify-between">
+            <div className="flex  flex-row items-center justify-between">
               <h3 className="text-xl font-semibold">{gig.title}</h3>
               <span className="rounded-full text-sm px-2 py-1 bg-background text-primary flex items-center justify-center">
                 {gig.status}
               </span>
             </div>
             <p className="text-sm">{gig.description}</p>
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-wrap gap-4 items-center">
               <span className="font-medium">
                 Budget: <span className="text-xl">${gig.budget}</span>
               </span>

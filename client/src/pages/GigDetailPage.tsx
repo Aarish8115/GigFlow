@@ -93,8 +93,8 @@ function GigDetailPage() {
   if (error || !gig) return <div>{error || "Gig not found"}</div>;
 
   return (
-    <div className="w-4/5  mx-auto text-background flex flex-col gap-6 my-8">
-      <div className="flex justify-between items-center ">
+    <div className="w-full px-4 sm:w-4/5 mx-auto text-background flex flex-col gap-6 my-8">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold">{gig.title}</h1>
           <p className="text-sm font-light">Posted by {gig.client?.username}</p>
@@ -120,17 +120,17 @@ function GigDetailPage() {
         <div className="bg-tertiary rounded-md py-2 px-4 text-primary">
           <h3 className="text-lg pb-4">Submit a bid</h3>
           <form onSubmit={submitBid} className="flex text-sm flex-col gap-4">
-            <label className="flex gap-2 items-start">
+            <label className="flex flex-col gap-2 sm:flex-row sm:items-start">
               <span>Message</span>
               <textarea
                 value={bidMessage}
                 onChange={(e) => setBidMessage(e.target.value)}
                 rows={1}
                 required
-                className="text-background  bg-primary text-sm  focus:outline-tertiary rounded-sm px-4 py-2 w-3/5"
+                className="text-background bg-primary text-sm focus:outline-tertiary rounded-sm px-4 py-2 w-full sm:w-3/5"
               />
             </label>
-            <label className="flex gap-2 items-center">
+            <label className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <span>Amount ($)</span>
               <input
                 type="number"
@@ -138,14 +138,14 @@ function GigDetailPage() {
                 value={bidAmount}
                 onChange={(e) => setBidAmount(Number(e.target.value))}
                 required
-                className="text-background  bg-primary text-sm  focus:outline-tertiary rounded-sm px-4 py-2 w-fit"
+                className="text-background bg-primary text-sm focus:outline-tertiary rounded-sm px-4 py-2 w-full sm:w-fit"
               />
             </label>
             {bidError && <div>{bidError}</div>}
             {bidSuccess && <div>{bidSuccess}</div>}
             <button
               type="submit"
-              className="bg-primary  text-background w-fit font-normal text-base px-3 py-1.5 rounded-sm "
+              className="bg-primary text-background w-full sm:w-fit font-normal text-base px-3 py-1.5 rounded-sm "
             >
               Submit Bid
             </button>
@@ -167,7 +167,7 @@ function GigDetailPage() {
                 key={bid._id}
                 className="flex flex-col rounded-md px-6 py-4 gap-2 border-tertiary bg-secondary text-primary  "
               >
-                <div className="flex justify-between">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-xl font-semibold">
                     {bid.freelancer?.username}
                   </span>
@@ -176,11 +176,11 @@ function GigDetailPage() {
                   </span>
                 </div>
                 <p>{bid.message}</p>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-xl font-medium">${bid.amount}</span>
                   {gig.status === "open" && bid.status === "pending" && (
                     <button
-                      className="bg-primary  text-background w-fit font-normal text-base px-3 py-1.5 rounded-sm "
+                      className="bg-primary text-background w-full sm:w-fit font-normal text-base px-3 py-1.5 rounded-sm "
                       onClick={() => hire(bid._id)}
                     >
                       Hire

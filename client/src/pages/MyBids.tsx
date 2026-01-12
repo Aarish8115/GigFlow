@@ -44,21 +44,21 @@ const MyBids = () => {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 w-3/5 mx-auto mt-8 pb-24">
+      <div className="flex flex-col gap-4 w-full px-4 md:w-3/5 mx-auto mt-8 pb-24">
         {bids.map((bid) => (
           <Link
             key={bid._id}
             to={`/gigs/${bid.gig._id}`}
             className="flex flex-col rounded-md px-6 py-4 gap-2 border-tertiary bg-secondary text-primary  "
           >
-            <div className="flex justify-between">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="text-xl font-semibold">{bid.gig.title}</h3>
               <span className="rounded-full text-sm px-2 py-1 bg-background text-primary flex items-center justify-center">
                 {bid.status}
               </span>
             </div>
             <p className="text-sm">{bid.gig.description}</p>
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-wrap gap-4 items-center">
               <span className="font-medium">
                 Budget: <span className="text-xl">${bid.gig.budget}</span>
               </span>

@@ -29,8 +29,8 @@ function LoginPage() {
   }
 
   return (
-    <div className="bg-tertiary w-full h-screen realtive text-background">
-      <div className="w-2/5 h-4/5 px-16 rounded-md absolute -translate-1/2 top-1/2 left-1/2 bg-primary p-6 flex flex-col gap-1 justify-center">
+    <div className="bg-tertiary w-full min-h-screen relative text-background flex items-center justify-center px-4 py-8">
+      <div className="w-full max-w-md md:w-2/5 md:h-4/5 md:px-16 rounded-md md:absolute md:-translate-1/2 md:top-1/2 md:left-1/2 bg-primary p-6 flex flex-col gap-1 justify-center">
         <h1 className="font-semibold text-3xl self-center">Login</h1>
         <p className="text-xs self-center">Use your email or username plus password.</p>
 
@@ -63,7 +63,7 @@ function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="bg-tertiary cursor-pointer self-center w-fit text-primary h-fit font-normal text-base px-3 py-1.5 rounded-sm "
+            className="bg-tertiary cursor-pointer self-center w-full md:w-fit text-primary h-fit font-normal text-base px-3 py-1.5 rounded-sm text-center"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
