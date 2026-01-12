@@ -40,7 +40,7 @@ function GigsPage() {
     <div className="flex flex-col py-8 md:w-4/5 mx-auto w-full text-background">
       <div className="flex justify-between items-center ">
         <div>
-          <h1 className="text-xl">Open Gigs</h1>
+          <h1 className="text-2xl font-semibold">Open Gigs</h1>
           <p className="text-sm font-light  ">
             Browse active gigs and apply with your best bid.
           </p>
@@ -85,15 +85,19 @@ function GigsPage() {
           <Link
             key={gig._id}
             to={`/gigs/${gig._id}`}
-            className="flex flex-col rounded-sm px-4 py-2 gap-2 border-tertiary bg-secondary text-primary  "
+            className="flex flex-col rounded-md px-6 py-4 gap-2 border-tertiary bg-secondary text-primary  "
           >
             <div className="flex justify-between">
-              <h3 className="text-lg font-semibold">{gig.title}</h3>
-              <span className="rounded-full text-sm px-2 py-1 bg-background text-primary flex items-center justify-center">{gig.status}</span>
+              <h3 className="text-xl font-semibold">{gig.title}</h3>
+              <span className="rounded-full text-sm px-2 py-1 bg-background text-primary flex items-center justify-center">
+                {gig.status}
+              </span>
             </div>
             <p className="text-sm">{gig.description}</p>
             <div className="flex gap-4 items-center">
-              <span className="font-medium">Budget: ${gig.budget}</span>
+              <span className="font-medium">
+                Budget: <span className="text-xl">${gig.budget}</span>
+              </span>
               <span className="text-sm font-light  ">
                 by {gig.client?.username}
               </span>
