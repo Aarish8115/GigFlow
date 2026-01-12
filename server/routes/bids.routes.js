@@ -1,7 +1,11 @@
 const { Router } = require("express");
-const { bidOnGig, getAllBids } = require("../controllers/bids");
+const { bidOnGig, getAllBids, hireBid } = require("../controllers/bids");
+const { requireAuth } = require("../middlewares/auth");
 
-const app = Router();
+const router = Router();
 
-app.route("/bids/:id").post(bidOnGig);
-app.route("/bids/:id").get(getAllBids);
+router.post("/bids", requireAuth, bidOnGig);
+router.get("/bids/:gigId", requireAuth, getAllBids);
+router.patch("/bids/:bidId/hire", requireAuth, hireBid);
+
+module.exports = router;

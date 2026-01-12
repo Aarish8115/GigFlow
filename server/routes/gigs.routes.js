@@ -1,8 +1,11 @@
 const { Router } = require("express");
 const { getAllGig, createGig, getGig } = require("../controllers/gigs");
+const { requireAuth } = require("../middlewares/auth");
 
-const app = Router();
+const router = Router();
 
-app.route("/gigs").get(getAllGig);
-app.route("/gigs").post(createGig);
-app.route("/gigs/:id").get(getGig);
+router.get("/gigs", getAllGig);
+router.post("/gigs", requireAuth, createGig);
+router.get("/gigs/:gigId", getGig);
+
+module.exports = router;

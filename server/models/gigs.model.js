@@ -1,19 +1,42 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const Gigs = new Schema({
-  id: {
-    type: Number,
+const GigSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    budget: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    status: {
+      type: String,
+      enum: ["open", "assigned", "closed"],
+      default: "open",
+    },
+    client: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    hiredBid: {
+      type: Schema.Types.ObjectId,
+      ref: "Bid",
+      default: null,
+    },
   },
-  name: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  client: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
-module.exports = mongoose.model(Gigs);
+GigSchema.index({ title: "text" });
+
+module.exports = mongoose.model("Gig", GigSchema);
