@@ -80,7 +80,7 @@ function GigsPage() {
         <div className="text-sm font-light  ">No gigs found.</div>
       )}
 
-      <div className="bg-gray-500flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         {gigs.map((gig) => (
           <Link
             key={gig._id}

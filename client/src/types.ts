@@ -14,7 +14,7 @@ export interface Bid {
   amount: number;
   status: BidStatus;
   freelancer: User;
-  gig: string;
+  gig: Gig ;
   createdAt?: string;
 }
 

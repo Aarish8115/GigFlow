@@ -161,18 +161,30 @@ function GigDetailPage() {
           {sortedBids.length === 0 && (
             <p className="font-light text-sm">No bids yet.</p>
           )}
-          <div>
+          <div className="flex flex-col gap-4 mb-24 mt-4">
             {sortedBids.map((bid) => (
-              <div key={bid._id}>
-                <div>
-                  <strong>{bid.freelancer?.username}</strong>
-                  <span>{bid.status}</span>
+              <div
+                key={bid._id}
+                className="flex flex-col rounded-md px-6 py-4 gap-2 border-tertiary bg-secondary text-primary  "
+              >
+                <div className="flex justify-between">
+                  <span className="text-xl font-semibold">
+                    {bid.freelancer?.username}
+                  </span>
+                  <span className=" h-fit rounded-full text-sm px-2 py-1 bg-background text-primary flex items-center justify-center">
+                    {bid.status}
+                  </span>
                 </div>
                 <p>{bid.message}</p>
-                <div>
-                  <span>${bid.amount}</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-medium">${bid.amount}</span>
                   {gig.status === "open" && bid.status === "pending" && (
-                    <button onClick={() => hire(bid._id)}>Hire</button>
+                    <button
+                      className="bg-primary  text-background w-fit font-normal text-base px-3 py-1.5 rounded-sm "
+                      onClick={() => hire(bid._id)}
+                    >
+                      Hire
+                    </button>
                   )}
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import logo from "../assets/WOBgGIgflow_1.png"
+import logo from "../assets/WOBgGIgflow_1.png";
 function Layout() {
   const { user, logout } = useAuth();
 
@@ -8,8 +8,11 @@ function Layout() {
     <div className="w-full h-screen bg-primary">
       <div className="px-2 py-2">
         <header className="flex bg-secondary py-6 rounded-md items-center justify-between px-16 ">
-          <Link to="/" className="text-2xl font-bold text-primary uppercase flex gap-1 items-center">
-          <img src={logo} alt="Logo"  className="w-16"/>
+          <Link
+            to="/"
+            className="text-2xl font-bold text-primary uppercase flex gap-1 items-center"
+          >
+            <img src={logo} alt="Logo" className="w-16" />
             GigFlow
           </Link>
 
@@ -34,9 +37,9 @@ function Layout() {
           <div className="flex gap-4 items-center">
             {user ? (
               <>
-                <span className="text-primary font-semibold">
+                <Link to={"/bids/me"} className="text-primary font-semibold">
                   {user.username}
-                </span>
+                </Link>
                 <button
                   onClick={logout}
                   className="bg-primary  text-background font-normal text-base px-3 py-1.5 rounded-sm "

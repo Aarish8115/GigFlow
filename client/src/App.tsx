@@ -6,7 +6,7 @@ import GigsPage from "./pages/GigsPage";
 import LoginPage from "./pages/LoginPage";
 import NewGigPage from "./pages/NewGigPage";
 import RegisterPage from "./pages/RegisterPage";
-
+import MyBids from "./pages/MyBids";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [{ path: "gigs/new", element: <NewGigPage /> }],
       },
+      {
+        path: "bids/me",
+        element: <MyBids />,
+      },
     ],
   },
   { path: "/login", element: <LoginPage /> },
@@ -26,7 +30,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider  router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

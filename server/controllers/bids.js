@@ -7,12 +7,10 @@ async function bidOnGig(req, res) {
   const bidMessage = message || description;
 
   if (!gigId || !bidMessage || amount === undefined) {
-    return res
-      .status(400)
-      .json({
-        error: true,
-        message: "gigId, message, and amount are required.",
-      });
+    return res.status(400).json({
+      error: true,
+      message: "gigId, message, and amount are required.",
+    });
   }
 
   const gig = await Gig.findById(gigId);
@@ -128,5 +126,16 @@ async function hireBid(req, res) {
 
   return res.status(200).json({ error: false, gig: updatedGig, hiredBid });
 }
+async function getFilledBids(req, res) {
+  const userId = req.user._id;
 
-module.exports = { bidOnGig, getAllBids, hireBid };
+  const bids = await Bid.find({ freelancer: userId })
+    .populate({
+      path: "gig",
+      populate: { path: "client", select: "name username email" },
+    })
+    .sort({ createdAt: -1 });
+
+  return res.status(200).json({ error: false, bids });
+}
+module.exports = { bidOnGig, getAllBids, hireBid, getFilledBids };
