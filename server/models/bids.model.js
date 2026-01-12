@@ -14,5 +14,8 @@ const Bids = new Schema({
   amount: {
     type: Number,
   },
+  gigId: {
+    type: Number,
+  },
 });
 module.exports = mongoose.model("Bids", Bids);

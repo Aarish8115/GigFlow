@@ -14,9 +14,6 @@ const Gigs = new Schema({
   client: {
     type: String,
   },
-  bids: {
-    id: { type: String },
-  },
 });
 
 module.exports = mongoose.model(Gigs);

@@ -18,7 +18,8 @@ async function getAllGig(req, res) {
   }
   return res.status(200).json({ error: false, allGigs });
 }
-async function findGig(req, res) {
+
+async function getGig(req, res) {
   const { id } = req.body;
   const Gig = await Gigs.findOne({ id });
   if (!Gig) {
@@ -27,4 +28,4 @@ async function findGig(req, res) {
   return res.status(200).json({ error: false, Gig });
 }
 
-module.exports = { createGig, getAllGig, findGig };
+module.exports = { createGig, getAllGig, getGig };
