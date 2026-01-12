@@ -1,41 +1,41 @@
 import { useEffect, useState } from "react";
 import api from "../api/client";
-import type { Bid, Gig } from "../types";
+import type { Bid } from "../types";
 import { Link } from "react-router";
 
 const MyBids = () => {
   const [bids, setBids] = useState<Bid[]>([]);
-  const [gigs, setGigs] = useState<Gig[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [gigs, setGigs] = useState<Gig[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
   async function loadMyGigs() {
-    setLoading(true);
-    setError(null);
+    // setLoading(true);
+    // setError(null);
     try {
       const res = await api.get("/bids/me");
       setBids(res.data.bids);
     } catch (_err) {
-      setError("Failed to load gigs");
+      // setError("Failed to load gigs");
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }
   useEffect(() => {
     loadMyGigs();
   }, []);
 
-  useEffect(() => {
-    if (!bids.length) {
-      setGigs([]);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!bids.length) {
+  //     setGigs([]);
+  //     return;
+  //   }
 
-    const populatedGigs = bids
-      .map((bid) => bid.gig)
-      .filter((gig): gig is Gig => Boolean(gig));
+  //   const populatedGigs = bids
+  //     .map((bid) => bid.gig)
+  //     .filter((gig): gig is Gig => Boolean(gig));
 
-    setGigs(populatedGigs);
-  }, [bids]);
+  // setGigs(populatedGigs);
+  // }, [bids]);
   useEffect(() => {
     if (bids.length) {
       console.log("data state", bids);

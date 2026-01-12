@@ -11,6 +11,7 @@ const bidRoutes = require("./routes/bids.routes");
 const port = process.env.PORT || 3000;
 const clientOrigins = process.env.CLIENT_URL?.split(",") || [
   "http://localhost:5173",
+  "https://gigflow-frontend-b9t6.onrender.com",
 ];
 
 const app = express();
@@ -27,8 +28,6 @@ app.use(cookieParser());
 app.use("/api", authRoutes);
 app.use("/api", gigRoutes);
 app.use("/api", bidRoutes);
-
-
 
 async function start() {
   if (!process.env.MONGODB_URI) {
