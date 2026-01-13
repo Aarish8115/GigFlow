@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
-const { TOKEN_COOKIE } = require("../middlewares/auth");
 
 const cookieOptions = {
   httpOnly: true,
@@ -47,7 +46,7 @@ async function register(req, res) {
   const user = await User.create({ name, username, email, password: hashed });
   const token = signToken(user._id);
 
-  res.cookie(TOKEN_COOKIE, token, cookieOptions);
+  res.cookie(process.env.TOKEN_COOKIE, token, cookieOptions);
   return res.status(201).json({ error: false, user: buildSafeUser(user) });
 }
 
@@ -77,12 +76,12 @@ async function login(req, res) {
   }
 
   const token = signToken(user._id);
-  res.cookie(TOKEN_COOKIE, token, cookieOptions);
+  res.cookie(process.env.TOKEN_COOKIE, token, cookieOptions);
   return res.status(200).json({ error: false, user: buildSafeUser(user) });
 }
 
 function logout(_req, res) {
-  res.clearCookie(TOKEN_COOKIE, { ...cookieOptions, maxAge: 0 });
+  res.clearCookie(process.env.TOKEN_COOKIE, { ...cookieOptions, maxAge: 0 });
   return res.status(200).json({ error: false, message: "Logged out." });
 }
 

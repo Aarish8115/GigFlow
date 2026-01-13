@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
-const TOKEN_COOKIE = "gigflow_token";
+
 
 function getTokenFromRequest(req) {
   const bearer = req.headers.authorization;
   if (bearer && bearer.startsWith("Bearer ")) {
     return bearer.replace("Bearer ", "");
   }
-  return req.cookies?.[TOKEN_COOKIE];
+  return req.cookies?.[process.env.TOKEN_COOKIE];
 }
 
 async function requireAuth(req, res, next) {
@@ -33,4 +33,4 @@ async function requireAuth(req, res, next) {
   }
 }
 
-module.exports = { requireAuth, TOKEN_COOKIE };
+module.exports = { requireAuth};

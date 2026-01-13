@@ -51,7 +51,7 @@ const MyBids = () => {
             to={`/gigs/${bid.gig._id}`}
             className="flex flex-col rounded-md px-6 py-4 gap-2 border-tertiary bg-secondary text-primary  "
           >
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold">{bid.gig.title}</h3>
               <span className="rounded-full text-sm px-2 py-1 bg-background text-primary flex items-center justify-center">
                 {bid.status}
